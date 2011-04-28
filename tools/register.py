@@ -13,12 +13,12 @@ def main():
         conn = httplib.HTTPConnection(args.host)
         conn.connect()
     except IOError as e:
-        print "Unable to connect to '%s', reason: %s" % (args.host, str(e))
+        print("Unable to connect to '%s', reason: %s" % (args.host, str(e)))
         return
 
-    conn.request("POST", '/register')
+    conn.request("GET", '/register')
     response = conn.getresponse()
-    print response.read()
+    print("Registration GUID: %s" % response.read())
 
 if __name__ == "__main__":
     main()
