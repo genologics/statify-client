@@ -1,2 +1,4 @@
 *.pyc
-statify/.idea
+*.iml
+.idea
+target
