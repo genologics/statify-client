@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 public class StatifyTest {
     @Test
     public void testLog() {
-        Statify statify = new Statify("http://localhost:8080");
+        Statify statify = new Statify("http://localhost:8000");
 
         // logging is not yet implemented
-        Assert.assertFalse(statify.log("key", "value"));
-        Assert.assertFalse(statify.log("key", 1L));
+        Assert.assertTrue(statify.log("key", "value"));
+        Assert.assertTrue(statify.log("key", 1L));
     }
 }

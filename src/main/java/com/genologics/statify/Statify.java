@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 
 /**
@@ -34,12 +33,14 @@ public class Statify {
             this.guid = guid;
         }
         this.hostname = hostname;
+
+        logger.info("Registered w/ " + hostname + ", guid='" + this.guid + "'");
     }
 
     public boolean log(String key, Object value) {
         BufferedReader bufferedReader = null;
         try {
-            URL url = new URL(hostname + "/log");
+            URL url = new URL(hostname + "/api/log");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
@@ -93,8 +94,8 @@ public class Statify {
     String register(String hostname) {
         BufferedReader bufferedReader = null;
         try {
-            URL url = new URL(hostname + "/register");
-            URLConnection urlConnection = url.openConnection();
+            URL url = new URL(hostname + "/api/register");
+            HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
 
             bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String line = bufferedReader.readLine().trim();
